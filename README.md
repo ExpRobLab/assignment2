@@ -9,7 +9,7 @@ Develop a ROS2 package that lets a mobile robot endowed with a camera:
 
 You have some hints about the position of marker. There are $4$ waypoints:
 
-- $x_1 = -6.0, y_1= -6.0$;
+- $x_1 = -6.0,\, y_1= -6.0$;
 - $x_2 = -6.0, y_2 = 6.0$;
 - $x_3= 6.0, y_3 = -6.0$;
 - $x_4 = 6.0, y_4 = 6.0$.
