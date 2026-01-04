@@ -26,6 +26,15 @@ def generate_launch_description():
         }.items()
     )
 
+
+    pkg_planning = get_package_share_directory('plansys_interface')
+    planning_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+        os.path.join(pkg_planning, 'launch', 'actions_launcher.launch.py'),
+        )
+    )
+
+
     pkg_robot = get_package_share_directory('bme_gazebo_basics')
     robot_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -56,11 +65,31 @@ def generate_launch_description():
         }]
     )
 
+    pkg_mapping = get_package_share_directory('ros2_navigation')
+    mapping_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_mapping, 'launch', 'mapping.launch.py'),
+        )
+    )
+
+    pkg_navigation = get_package_share_directory('ros2_navigation')
+    navigation_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(pkg_navigation, 'launch', 'navigation.launch.py'),
+        )
+    )
+
+
+
     launchDescriptionObject = LaunchDescription()
     launchDescriptionObject.add_action(world_arg)
     launchDescriptionObject.add_action(world_launch)
+    launchDescriptionObject.add_action(planning_launch)
     launchDescriptionObject.add_action(robot_launch)
     launchDescriptionObject.add_action(aruco_launch)
-    launchDescriptionObject.add_action(marker_detection)    
+    launchDescriptionObject.add_action(marker_detection) 
+    launchDescriptionObject.add_action(mapping_launch)
+    launchDescriptionObject.add_action(navigation_launch)
+    
 
     return launchDescriptionObject
